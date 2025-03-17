@@ -22,7 +22,8 @@ gendiff -h
 
 ## Запуск программы:
 1. npm install - установка зависимостей
-2. 
+2. npm link
+3. 
 - gendiff -h - вывод справочной информации об утилите
 - gendiff <filepath1> <filepath2> утилита модет работать как с относительными путями до файла так и с абсолютными
 
@@ -48,12 +49,6 @@ parseFile(jsonFile): {
   follow: false
 }
 ```
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/Wladislava1/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Wladislava1/frontend-project-46/actions)
-
-### Test Coverage Badge:
-[![Test Coverage](https://api.codeclimate.com/v1/badges/ad63740bf79023bffc15/test_coverage)](https://codeclimate.com/github/Wladislava1/frontend-project-46/test_coverage)
-
 ### Для сравнения неплоских файлов была использована похожая логика с добавлением рекруссии для каждого значения-объекта
 ### Вывод результата сравнения двух неплоских файлов форматтером по умолчанию: https://asciinema.org/a/kSMXFF44qSQRUYqswnYbUbzcE
 - Здесь по умолчанию используется форматер вывода информации _stylish.js_;
