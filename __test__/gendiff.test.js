@@ -8,10 +8,10 @@ import json from '../src/formatters/json.js';
 import plain from '../src/formatters/plain.js';
 import compare from '../src/formatters/index.js';
 import {
-    jsonNotFlatFormatter, jsonFormatter, json1, json2, jsonNotFlat1,
-    jsonNotFlat2, diffrentNotFlat, plainResult, stylishFlat, result1,
-    stylishNotFlat, plainFormatter, differentFlat, result2,
-  } from '../__fixtures__/tests.js';
+  jsonNotFlatFormatter, jsonFormatter, json1, json2, jsonNotFlat1,
+  jsonNotFlat2, diffrentNotFlat, plainResult, stylishFlat, result1,
+  stylishNotFlat, plainFormatter, differentFlat, result2,
+} from '../__fixtures__/tests.js';
 import stylish from '../src/formatters/stylish.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -37,56 +37,55 @@ describe('read and parse files', () => {
 });
 
 test('correctly finds differences between nested objects', () => {
-    expect(findDifferences(jsonNotFlat1, jsonNotFlat2)).toEqual(diffrentNotFlat);
+  expect(findDifferences(jsonNotFlat1, jsonNotFlat2)).toEqual(diffrentNotFlat);
 });
 
 describe('formatter json', () => {
-    test.each([
-      [json1, json2, jsonFormatter],
-      [jsonNotFlat1, jsonNotFlat2, jsonNotFlatFormatter],
-      [{}, {}, '{}'],
-    ])('for %o and %o with format %s', (file1, file2, expected) => {
-      expect(json(findDifferences(file1, file2))).toEqual(expected);
-    });
+  test.each([
+    [json1, json2, jsonFormatter],
+    [jsonNotFlat1, jsonNotFlat2, jsonNotFlatFormatter],
+    [{}, {}, '{}'],
+  ])('for %o and %o with format %s', (file1, file2, expected) => {
+    expect(json(findDifferences(file1, file2))).toEqual(expected);
+  });
 });
 
 describe('formatter plain', () => {
-    test.each([
-      [diffrentNotFlat, plainResult],
-      [differentFlat, plainFormatter],
-      [{}, ''],
-    ])('correctly formats %o', (input, expected) => {
-      expect(plain(input)).toEqual(expected);
-    });
+  test.each([
+    [diffrentNotFlat, plainResult],
+    [differentFlat, plainFormatter],
+    [{}, ''],
+  ])('correctly formats %o', (input, expected) => {
+    expect(plain(input)).toEqual(expected);
+  });
 });
 
 describe('formatter stylish', () => {
-    test.each([
-      [diffrentNotFlat, stylishNotFlat],
-      [differentFlat, stylishFlat],
-      [{}, result1],
-    ])('correctly formats %o', (input, expected) => {
-      expect(stylish(input)).toEqual(expected);
-    });
+  test.each([
+    [diffrentNotFlat, stylishNotFlat],
+    [differentFlat, stylishFlat],
+    [{}, result1],
+  ])('correctly formats %o', (input, expected) => {
+    expect(stylish(input)).toEqual(expected);
+  });
 });
 
 describe('compare two files json and yaml with plain', () => {
-    test.each([
-      [json1, json2, plainFormatter],
-      [jsonNotFlat1, jsonNotFlat2, plainResult],
-      [{}, {}, result2],
-    ])('correctly compares %o and %o with format %s', (file1, file2, expected) => {
-      expect(compare(findDifferences(file1, file2), 'plain')).toEqual(expected);
-    });
+  test.each([
+    [json1, json2, plainFormatter],
+    [jsonNotFlat1, jsonNotFlat2, plainResult],
+    [{}, {}, result2],
+  ])('correctly compares %o and %o with format %s', (file1, file2, expected) => {
+    expect(compare(findDifferences(file1, file2), 'plain')).toEqual(expected);
+  });
 });
-  
+
 describe('compare two files json and yaml with stylish', () => {
-    test.each([
-      [json1, json2, stylishFlat],
-      [jsonNotFlat1, jsonNotFlat2, stylishNotFlat],
-      [{}, {}, result1],
-    ])('correctly compares %o and %o with format %s', (file1, file2, expected) => {
-      expect(compare(findDifferences(file1, file2), 'stylish')).toEqual(expected);
-    });
+  test.each([
+    [json1, json2, stylishFlat],
+    [jsonNotFlat1, jsonNotFlat2, stylishNotFlat],
+    [{}, {}, result1],
+  ])('correctly compares %o and %o with format %s', (file1, file2, expected) => {
+    expect(compare(findDifferences(file1, file2), 'stylish')).toEqual(expected);
+  });
 });
-  

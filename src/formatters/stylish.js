@@ -7,7 +7,8 @@ const buildDiffObject = (diff) => {
     nested: (acc, key, change) => ({ ...acc, [key]: { type: 'nested', children: buildDiffObject(change.children) } }),
   };
 
-  return Object.entries(diff).reduce((acc, [key, change]) => handlers[change.type](acc, key, change), {});
+  return Object.entries(diff)
+    .reduce((acc, [key, change]) => handlers[change.type](acc, key, change), {});
 };
 
 const formatValue = (value) => (value === null ? 'null' : value);
